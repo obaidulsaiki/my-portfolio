@@ -1,5 +1,6 @@
 "use client";
-import { Trophy, Code2, Target, Zap, LayoutGrid, Terminal, ExternalLink } from "lucide-react";
+import { Trophy, Code2, Target, Zap, LayoutGrid, Terminal, ExternalLink, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function CPPage() {
   const platforms = [
@@ -200,6 +201,68 @@ export default function CPPage() {
           </div>
 
         </div>
+
+        {/* CONTEST STANDINGS */}
+        <section className="space-y-12">
+          <div className="text-center space-y-4">
+            <h3 className="text-3xl font-bold text-zinc-900 flex items-center justify-center">
+              <Trophy className="mr-3 text-amber-500" size={32} />
+              Major Contest <span className="text-blue-600 ml-2">Standings</span>
+            </h3>
+            <p className="text-zinc-500 font-medium">Verified rankings from national and institutional competitive programming tournaments.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { rank: "13th", contest: "IUBAT Intra Collaborative Contest", year: "2024", color: "bg-blue-50 text-blue-600 border-blue-100" },
+              { rank: "418th", contest: "ICPC Preliminaries", year: "2023", color: "bg-zinc-50 text-zinc-600 border-zinc-100" },
+              { rank: "1st", contest: "Monthly Contest", year: "April 2023", color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
+              { rank: "2nd", contest: "Monthly Contest", year: "January 2023", color: "bg-amber-50 text-amber-600 border-amber-100" },
+              { rank: "726th", contest: "ICPC Preliminaries", year: "April 2022", color: "bg-zinc-100 text-zinc-500 border-zinc-200" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-card p-8 rounded-[2.5rem] border border-zinc-100 shadow-lg hover:shadow-xl transition-all group relative overflow-hidden bg-white/60"
+              >
+                <div className="flex flex-col space-y-4">
+                  <div className={`w-fit px-4 py-1.5 rounded-full text-sm font-black uppercase tracking-widest border ${item.color}`}>
+                    {item.rank} Place
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="text-xl font-bold text-zinc-900 group-hover:text-blue-600 transition-colors leading-tight">
+                      {item.contest}
+                    </h4>
+                    <p className="text-zinc-400 font-black text-[10px] uppercase tracking-[0.2em] flex items-center">
+                      <Calendar size={12} className="mr-1.5" /> {item.year}
+                    </p>
+                  </div>
+                </div>
+                {/* DECORATIVE RANK WATERMARK */}
+                <div className="absolute -bottom-4 -right-4 text-6xl font-black text-zinc-50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none italic">
+                  #{item.rank.replace(/\D/g, '')}
+                </div>
+              </motion.div>
+            ))}
+
+            {/* FUTURE ACHIEVEMENT PLACEHOLDER */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="glass-card p-8 rounded-[2.5rem] border border-dashed border-zinc-200 flex flex-col items-center justify-center text-center space-y-3 opacity-60"
+            >
+              <div className="w-12 h-12 bg-zinc-50 rounded-full flex items-center justify-center text-zinc-400">
+                <Zap size={24} />
+              </div>
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Next Achievement</p>
+              <p className="text-[10px] font-medium text-zinc-300">Pushing limits in upcoming rounds</p>
+            </motion.div>
+          </div>
+        </section>
 
         {/* CTA */}
         <div className="text-center pt-10">
