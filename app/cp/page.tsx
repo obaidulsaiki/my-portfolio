@@ -5,40 +5,88 @@ export default function CPPage() {
   const platforms = [
     {
       name: "Codeforces",
-      handle: "obaidul_haque",
-      rating: "1400+",
-      rank: "Specialist (Projected)",
-      color: "from-blue-500 to-blue-600",
-      link: "https://codeforces.com"
+      handle: "Obaidulsaiki",
+      rating: "968",
+      rank: "Newbie",
+      solved: "267",
+      attempted: "283",
+      details: "Top Tags: Implementation (79), Greedy (43), Math (41), Strings (27)",
+      color: "from-red-600 to-red-700",
+      link: "https://codeforces.com/profile/Obaidulsaiki"
     },
     {
       name: "LeetCode",
-      handle: "obaidul_haque",
-      solved: "300+",
-      rank: "Top 10%",
+      handle: "obaidulsaiki",
+      solved: "22",
+      attempted: "148",
+      rank: "3.6M+ Rank",
+      details: "Stats: 17 Easy, 5 Med • Skills: Array (10), Math (5), DP (4)",
       color: "from-orange-400 to-orange-500",
-      link: "https://leetcode.com"
+      link: "https://leetcode.com/u/obaidulsaiki/"
+    },
+    {
+      name: "HackerRank",
+      handle: "Obaidulsaiki",
+      solved: "79",
+      attempted: "ND",
+      rank: "PS 1★ / C 2★",
+      details: "Badges: Problem Solving, C Language • CSS Verified",
+      color: "from-green-500 to-green-600",
+      link: "https://www.hackerrank.com/profile/Obaidulsaiki"
     },
     {
       name: "CodeChef",
       handle: "obaidul_saiki",
-      rating: "3 Star",
-      rank: "Global Rank...",
-      color: "from-amber-600 to-amber-700",
-      link: "https://codechef.com"
+      solved: "100",
+      attempted: "ND",
+      rating: "771",
+      rank: "1 Star (Div 4)",
+      details: "Highest Rating: 771 • Active in Division 4 contests",
+      color: "from-amber-700 to-amber-800",
+      link: "https://www.codechef.com/users/obaidul_saiki"
+    },
+    {
+      name: "Toph",
+      handle: "obaidulsaiki",
+      solved: "11",
+      attempted: "72",
+      rank: "Rank: 9053",
+      details: "Top categories: Ad-hoc (7), Implementation (6), Brute Force (2)",
+      color: "from-blue-600 to-blue-700",
+      link: "https://toph.co/u/obaidulsaiki"
+    },
+    {
+      name: "Beecrowd",
+      handle: "Obaidulsaiki",
+      solved: "21",
+      attempted: "21",
+      rank: "Top 31%",
+      details: "Hardest Solved: 1000 • Submissions: 52 • Points: 60.42",
+      color: "from-yellow-500 to-yellow-600",
+      link: "https://www.beecrowd.com.br/judge/en/profile/obaidulsaiki"
+    },
+    {
+      name: "VJudge",
+      handle: "obaidulsaiki",
+      solved: "56",
+      attempted: "67",
+      rank: "Rank: 106,852",
+      details: "Attempted: 66 • Extensive solve history across multiple virtual judges",
+      color: "from-zinc-600 to-zinc-700",
+      link: "https://vjudge.net/user/obaidulsaiki"
     }
   ];
 
   const highlights = [
-    "Solved 1000+ problems across various online judges.",
-    "Participant in ICPC Regionals (Mock/National level).",
-    "Consistently in Top 5% for Weekly LeetCode contests.",
-    "Strong grasp of Graph Theory and Dynamic Programming."
+    "Solved 556+ algorithmic problems across 7+ major platforms.",
+    "Fluent in C++ STL and problem solving with clean, efficient code.",
+    "Strong focus on Implementation, Greedy, and Mathematical thinking.",
+    "Active participant in LeetCode weekly and Codeforces rounds."
   ];
 
   return (
     <main className="min-h-screen pt-24 pb-20 hero-gradient">
-      <div className="max-w-6xl mx-auto px-6 space-y-20">
+      <div className="max-w-[1400px] mx-auto px-6 space-y-20">
 
         {/* HEADER */}
         <div className="text-center space-y-4">
@@ -54,39 +102,60 @@ export default function CPPage() {
         </div>
 
         {/* STATS OVERVIEW */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {platforms.map((p, i) => (
-            <a
+            <div
               key={i}
-              href={p.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
+              className="group glass-card p-8 rounded-[3rem] border border-zinc-100 shadow-xl hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-500 relative overflow-hidden bg-white/80 backdrop-blur-xl"
             >
-              <div className="glass-card p-8 rounded-[2.5rem] border border-zinc-100 shadow-xl group-hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
-                <div className={`absolute top-0 right-0 w-2 h-full bg-gradient-to-b ${p.color}`}></div>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-2xl font-bold text-zinc-900">{p.name}</h3>
-                    <Code2 className="text-zinc-300 group-hover:text-blue-600 transition-colors" />
+              <div className={`absolute top-0 right-0 w-2 h-full bg-gradient-to-b ${p.color}`}></div>
+              <div className="flex flex-col h-full space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 bg-zinc-950 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:bg-blue-600 transition-colors duration-500">
+                    <Code2 size={24} />
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">Handle</p>
-                    <p className="text-lg font-semibold text-zinc-800">{p.handle}</p>
+                  <h3 className="text-2xl font-black text-zinc-900 tracking-tight">{p.name}</h3>
+                </div>
+
+                <div className="space-y-1">
+                  <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">Handle / Nickname</p>
+                  <p className="text-lg font-bold text-zinc-800 tracking-tight">{p.handle}</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-zinc-50 px-4 py-3 rounded-2xl border border-zinc-100">
+                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-tighter">Solved</p>
+                    <p className="text-blue-600 font-black text-xl leading-none mt-1">{p.solved}</p>
                   </div>
-                  <div className="flex gap-4 pt-2">
-                    <div className="bg-zinc-50 px-4 py-2 rounded-xl border border-zinc-100">
-                      <p className="text-[10px] font-bold text-zinc-400 uppercase">Rating/Solved</p>
-                      <p className="text-blue-600 font-bold">{p.rating || p.solved}</p>
-                    </div>
-                    <div className="bg-zinc-50 px-4 py-2 rounded-xl border border-zinc-100">
-                      <p className="text-[10px] font-bold text-zinc-400 uppercase">Rank</p>
-                      <p className="text-zinc-900 font-bold">{p.rank}</p>
-                    </div>
+                  <div className="bg-zinc-50 px-4 py-3 rounded-2xl border border-zinc-100">
+                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-tighter">Attempted</p>
+                    <p className="text-zinc-900 font-black text-xl leading-none mt-1">{(p as any).attempted || "ND"}</p>
                   </div>
                 </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">Rating / Standing</p>
+                  <p className="text-sm font-bold text-zinc-800 truncate">{p.rating || p.rank}</p>
+                </div>
+
+                {p.details && (
+                  <div className="flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-wider text-zinc-500 bg-zinc-50/50 p-2.5 rounded-xl border border-dashed border-zinc-200">
+                    {p.details}
+                  </div>
+                )}
+
+                <div className="pt-4 mt-auto">
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-zinc-950 text-white rounded-[1.5rem] text-[11px] font-black uppercase tracking-[0.2em] shadow-lg shadow-zinc-200 hover:bg-blue-600 hover:shadow-blue-200 transition-all active:scale-95 group-hover:rounded-[1rem]"
+                  >
+                    View Full Profile <ExternalLink size={14} />
+                  </a>
+                </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
 
@@ -115,7 +184,7 @@ export default function CPPage() {
             </h3>
             <div className="glass-card p-8 rounded-[2rem] border border-zinc-100 space-y-6 shadow-lg">
               <div className="flex flex-wrap gap-2">
-                {["Dijkstra", "Dynamic Programming", "Segment Tree", "Binary Search", "DFS/BFS", "Number Theory", "Recursion", "Two Pointers"].map((tag, i) => (
+                {["Implementation", "Greedy", "Math", "Strings", "Brute Force", "Number Theory", "Binary Search", "Two Pointers", "Hashing", "Sorting"].map((tag, i) => (
                   <span key={i} className="bg-zinc-900 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-blue-600 transition-colors cursor-default">
                     {tag}
                   </span>
