@@ -1,49 +1,27 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react";
 
-interface Experience {
-  company: string;
-  role: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  description: string[];
-  technologies: string[];
-}
-
 export default function ExperiencePage() {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/api/experience")
-      .then((res) => res.json())
-      .then((data) => setExperiences(data))
-      .catch((err) => {
-        console.error("Error fetching experience:", err);
-        // Fallback dummy data
-        setExperiences([
-          {
-            company: "Tech Solutions Inc.",
-            role: "Software Engineering Intern",
-            location: "Dhaka, Bangladesh",
-            startDate: "June 2023",
-            endDate: "August 2023",
-            description: [
-              "Assisted in developing REST APIs using Spring Boot and PostgreSQL.",
-              "Optimized database queries, reducing response time by 15%.",
-              "Collaborated with the frontend team to integrate Auth0 authentication."
-            ],
-            technologies: ["Spring Boot", "PostgreSQL", "React", "Docker"]
-          }
-        ]);
-      });
-  }, []);
+  const experiences = [
+    {
+      company: "Tech Solutions Inc.",
+      role: "Software Engineering Intern",
+      location: "Dhaka, Bangladesh",
+      startDate: "June 2023",
+      endDate: "August 2023",
+      description: [
+        "Assisted in developing REST APIs using Spring Boot and PostgreSQL.",
+        "Optimized database queries, reducing response time by 15%.",
+        "Collaborated with the frontend team to integrate Auth0 authentication."
+      ],
+      technologies: ["Spring Boot", "PostgreSQL", "React", "Docker"]
+    }
+  ];
 
   return (
     <main className="min-h-screen pt-24 pb-20 hero-gradient">
       <div className="max-w-5xl mx-auto px-6 space-y-16">
-        
+
         {/* HEADER */}
         <div className="space-y-4 text-center">
           <h2 className="text-blue-600 font-semibold tracking-wide uppercase text-sm">Professional Path</h2>
@@ -56,8 +34,8 @@ export default function ExperiencePage() {
         {/* EXPERIENCE LIST */}
         <div className="space-y-12">
           {experiences.map((exp, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="glass-card rounded-[2.5rem] p-8 md:p-12 border border-zinc-100 shadow-xl hover:shadow-2xl transition-all duration-500 group"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-zinc-100 pb-8">
@@ -105,8 +83,8 @@ export default function ExperiencePage() {
                   <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-[0.2em] mb-4">Stack Used</h4>
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies.map((tech, i) => (
-                      <span 
-                        key={i} 
+                      <span
+                        key={i}
                         className="bg-white text-zinc-700 px-4 py-2 rounded-xl text-sm font-bold border border-zinc-100 shadow-sm hover:border-blue-200 hover:text-blue-600 transition-all cursor-default"
                       >
                         {tech}

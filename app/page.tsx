@@ -1,33 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
-interface Profile {
-  name: string;
-  title: string;
-  bio: string;
-  imageUrl: string;
-}
-
-export default function Page() {
-  const [profile, setProfile] = useState<Profile | null>(null);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/api/profile")
-      .then((res) => res.json())
-      .then((data) => setProfile(data))
-      .catch(() => {
-        // Fallback for local dev if backend isn't running
-        setProfile({
-          name: "Obaidul Haque",
-          title: "Java Backend Developer & Researcher",
-          bio: "I specialize in building robust, scalable server-side applications with Spring Boot while pursuing research to bridge the gap between academic innovation and industry-scale implementation.",
-          imageUrl: "/images/profile.jpeg",
-        });
-      });
-  }, []);
-
-  if (!profile) return null;
+export default function Home() {
+  const profile = {
+    name: "Obaidul Haque",
+    title: "Java Backend Developer & Researcher",
+    bio: "I specialize in building robust, scalable server-side applications with Spring Boot while pursuing research to bridge the gap between academic innovation and industry-scale implementation.",
+    imageUrl: "/images/profile.jpeg",
+  };
 
   return (
     <main className="min-h-screen pt-16 hero-gradient overflow-hidden">
@@ -51,12 +31,18 @@ export default function Page() {
           </div>
 
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="bg-blue-600 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 hover:-translate-y-1">
+            <a
+              href="/contact"
+              className="bg-blue-600 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 hover:-translate-y-1 inline-block"
+            >
               Contact Me for Collaboration
-            </button>
-            <button className="bg-white text-zinc-900 border border-zinc-200 px-8 py-4 rounded-full font-bold hover:bg-zinc-50 transition-all shadow-sm">
+            </a>
+            <a
+              href="/projects"
+              className="bg-white text-zinc-900 border border-zinc-200 px-8 py-4 rounded-full font-bold hover:bg-zinc-50 transition-all shadow-sm inline-block"
+            >
               View Projects
-            </button>
+            </a>
           </div>
         </div>
 
@@ -65,7 +51,7 @@ export default function Page() {
           <div className="absolute -inset-4 bg-gradient-to-tr from-blue-100 to-transparent rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] border-8 border-white shadow-2xl glass-card">
             <img
-              src="/images/profile.jpeg"
+              src={profile.imageUrl}
               alt={profile.name}
               className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               onError={(e) => {
