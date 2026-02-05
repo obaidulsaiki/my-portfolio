@@ -440,19 +440,19 @@ export default function ResearchPage() {
       <div className="max-w-[1600px] mx-auto px-6 space-y-12">
 
         {/* HEADER SECTION */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 px-2">
           <div className="space-y-4 max-w-3xl">
             <motion.h2
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-blue-600 font-bold tracking-widest uppercase text-sm flex items-center"
+              className="text-blue-600 font-bold tracking-widest uppercase text-xs flex items-center"
             >
               <FlaskConical size={18} className="mr-2" /> Research Portfolio
             </motion.h2>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-7xl font-bold text-zinc-900 leading-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold text-zinc-900 leading-none tracking-tight"
             >
               Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Excellence</span>
             </motion.h1>
@@ -460,7 +460,7 @@ export default function ResearchPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-zinc-500 text-lg md:text-xl leading-relaxed"
+              className="text-zinc-500 text-base md:text-xl leading-relaxed"
             >
               A comprehensive record of 28 research contributions across Machine Learning,
               Healthcare AI, and Natural Language Processing.
@@ -468,21 +468,21 @@ export default function ResearchPage() {
           </div>
 
           {/* QUICK STATS */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 md:gap-4">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 * i }}
-                className="glass-card p-6 rounded-3xl border border-zinc-100 shadow-lg flex items-center space-x-4 bg-white/50"
+                className="glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-zinc-100 shadow-lg flex items-center space-x-3 md:space-x-4 bg-white/50"
               >
-                <div className={`p-3 rounded-2xl bg-zinc-50 ${stat.color}`}>
-                  <stat.icon size={24} />
+                <div className={`p-2 md:p-3 rounded-xl md:rounded-2xl bg-zinc-50 ${stat.color}`}>
+                  <stat.icon size={20} className="md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <div className="text-3xl font-black text-zinc-900">{stat.value}</div>
-                  <div className="text-xs font-bold text-zinc-400 uppercase tracking-tighter">{stat.label}</div>
+                  <div className="text-xl md:text-3xl font-black text-zinc-900 leading-none mb-1">{stat.value}</div>
+                  <div className="text-[9px] md:text-xs font-bold text-zinc-400 uppercase tracking-tighter">{stat.label}</div>
                 </div>
               </motion.div>
             ))}
@@ -530,125 +530,210 @@ export default function ResearchPage() {
           </div>
         </div>
 
-        {/* RESEARCH TABLE */}
-        <div className="glass-card border border-zinc-100 rounded-[3rem] shadow-2xl overflow-hidden bg-white/40">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-zinc-950 text-white uppercase text-[10px] font-black tracking-[0.2em]">
-                  <th className="px-8 py-6 text-center"><Hash size={14} className="mx-auto" /></th>
-                  <th className="px-6 py-6">Status</th>
-                  <th className="px-6 py-6">Identity (PID)</th>
-                  <th className="px-6 py-6 min-w-[300px]">Research Title</th>
-                  <th className="px-6 py-6">Focus Type</th>
-                  <th className="px-6 py-6">Authors & Teammates</th>
-                  <th className="px-6 py-6">Publication / Journal</th>
-                  <th className="px-6 py-6 text-center">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-100">
-                <AnimatePresence mode="popLayout">
-                  {filteredData.map((paper, index) => (
-                    <motion.tr
-                      key={paper.id}
-                      layout
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="group hover:bg-blue-50/30 transition-colors"
-                    >
-                      <td className="px-8 py-8 text-center bg-zinc-50/50">
-                        <span className="text-lg font-black text-zinc-300 group-hover:text-blue-400 transition-colors">
-                          {paper.id.toString().padStart(2, '0')}
+        {/* RESEARCH LIST - Cards for Mobile, Table for Desktop */}
+        <div className="space-y-6">
+          {/* Mobile/Tablet Card View */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:hidden">
+            <AnimatePresence mode="popLayout">
+              {filteredData.map((paper, index) => (
+                <motion.div
+                  key={paper.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="glass-card p-6 rounded-3xl border border-zinc-100 shadow-xl bg-white/60 space-y-4"
+                >
+                  <div className="flex justify-between items-start">
+                    <span className="text-2xl font-black text-zinc-200">
+                      {paper.id.toString().padStart(2, '0')}
+                    </span>
+                    <StatusBadge status={paper.status} />
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold text-zinc-900 leading-tight group-hover:text-blue-600 transition-colors">
+                      {paper.title}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
+                      {paper.year !== '-' && <span className="flex items-center text-zinc-400"><Calendar size={12} className="mr-1" /> {paper.year}</span>}
+                      {paper.pid !== '-' && <span className="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100 italic">PID: {paper.pid}</span>}
+                      {paper.q !== '-' && (
+                        <span className={`flex items-center px-2 py-0.5 rounded border shadow-sm ${paper.q.includes('Q1') ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                          paper.q.includes('Q2') ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                            'bg-indigo-50 text-indigo-600 border-indigo-100'
+                          } italic`}>
+                          <Award size={10} className="mr-1" /> {paper.q}
                         </span>
-                      </td>
-                      <td className="px-6 py-8">
-                        <StatusBadge status={paper.status} />
-                      </td>
-                      <td className="px-6 py-8 bg-zinc-50/30">
-                        <div className="flex items-center space-x-2">
-                          <span className={`text-xs font-mono font-bold px-2 py-1 rounded-md ${paper.pid !== '-' ? 'bg-indigo-50 text-indigo-600 border border-indigo-100' : 'text-zinc-400'}`}>
-                            {paper.pid}
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex flex-wrap gap-2">
+                      {paper.authors.split(',').map((author, i) => {
+                        const name = author.trim();
+                        const isMe = name.toLowerCase() === "obaidul haque";
+                        return (
+                          <span
+                            key={i}
+                            className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMe
+                              ? "bg-blue-600 text-white border-blue-400"
+                              : "bg-zinc-50 text-zinc-500 border-zinc-100"
+                              }`}
+                          >
+                            {name}
                           </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-8">
-                        <div className="space-y-1">
-                          <h3 className="text-lg font-bold text-zinc-900 group-hover:text-blue-600 transition-colors leading-tight">
-                            {paper.title}
-                          </h3>
-                          <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
-                            {paper.year !== '-' && <span className="flex items-center text-zinc-400"><Calendar size={12} className="mr-1" /> {paper.year}</span>}
-                            {paper.q !== '-' && (
-                              <span className={`flex items-center px-2 py-1 rounded border shadow-sm ${paper.q.includes('Q1') ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
-                                paper.q.includes('Q2') ? 'bg-blue-50 text-blue-600 border-blue-100' :
-                                  'bg-indigo-50 text-indigo-600 border-indigo-100'
-                                } italic`}>
-                                <Award size={10} className="mr-1" /> {paper.q}
-                              </span>
-                            )}
+                        );
+                      })}
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-zinc-100">
+                      <div className="flex items-center space-x-2 text-zinc-500 font-bold text-xs">
+                        <Building size={14} className="text-zinc-400" />
+                        <span className="truncate max-w-[150px]">{paper.publisher !== '-' ? paper.publisher : 'N/A'}</span>
+                      </div>
+                      {paper.link ? (
+                        <a
+                          href={paper.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-1 text-blue-600 font-black text-[10px] uppercase tracking-widest hover:underline"
+                        >
+                          <span>Link</span>
+                          <ExternalLink size={12} />
+                        </a>
+                      ) : (
+                        <span className="text-zinc-300 font-black text-[10px] uppercase tracking-widest">N/A</span>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden xl:block glass-card border border-zinc-100 rounded-[3rem] shadow-2xl overflow-hidden bg-white/40">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-zinc-950 text-white uppercase text-[10px] font-black tracking-[0.2em]">
+                    <th className="px-8 py-6 text-center"><Hash size={14} className="mx-auto" /></th>
+                    <th className="px-6 py-6">Status</th>
+                    <th className="px-6 py-6">Identity (PID)</th>
+                    <th className="px-6 py-6 min-w-[300px]">Research Title</th>
+                    <th className="px-6 py-6">Focus Type</th>
+                    <th className="px-6 py-6">Authors & Teammates</th>
+                    <th className="px-6 py-6">Publication / Journal</th>
+                    <th className="px-6 py-6 text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-zinc-100">
+                  <AnimatePresence mode="popLayout">
+                    {filteredData.map((paper, index) => (
+                      <motion.tr
+                        key={paper.id}
+                        layout
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="group hover:bg-blue-50/30 transition-colors"
+                      >
+                        <td className="px-8 py-8 text-center bg-zinc-50/50">
+                          <span className="text-lg font-black text-zinc-300 group-hover:text-blue-400 transition-colors">
+                            {paper.id.toString().padStart(2, '0')}
+                          </span>
+                        </td>
+                        <td className="px-6 py-8">
+                          <StatusBadge status={paper.status} />
+                        </td>
+                        <td className="px-6 py-8 bg-zinc-50/30">
+                          <div className="flex items-center space-x-2">
+                            <span className={`text-xs font-mono font-bold px-2 py-1 rounded-md ${paper.pid !== '-' ? 'bg-indigo-50 text-indigo-600 border border-indigo-100' : 'text-zinc-400'}`}>
+                              {paper.pid}
+                            </span>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-8 bg-zinc-50/30">
-                        <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg border ${paper.type === 'Journal' ? 'border-purple-200 text-purple-600 bg-purple-50' :
-                          paper.type === 'Conference' ? 'border-sky-200 text-sky-600 bg-sky-50' :
-                            'border-zinc-200 text-zinc-600 bg-zinc-50'
-                          }`}>
-                          {paper.type}
-                        </span>
-                      </td>
-                      <td className="px-6 py-8">
-                        <div className="flex flex-wrap gap-2 max-w-[400px]">
-                          {paper.authors.split(',').map((author, i) => {
-                            const name = author.trim();
-                            const isMe = name.toLowerCase() === "obaidul haque";
-                            return (
-                              <span
-                                key={i}
-                                className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMe
-                                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-400 shadow-sm shadow-blue-100 ring-2 ring-blue-50"
-                                  : "bg-white text-zinc-500 border-zinc-100 hover:bg-zinc-50"
-                                  }`}
-                              >
-                                {name}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      </td>
-                      <td className="px-6 py-8 bg-zinc-50/30">
-                        <div className="flex items-center space-x-2 text-zinc-700 font-bold text-sm">
-                          <Building size={16} className="text-zinc-400" />
-                          <span>{paper.publisher !== '-' ? paper.publisher : 'N/A'}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-8 text-center">
-                        {paper.link ? (
-                          <a
-                            href={paper.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 active:scale-95 group/btn"
-                          >
-                            <span>Online</span>
-                            <ExternalLink size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                          </a>
-                        ) : (
-                          <button
-                            disabled
-                            className="inline-flex items-center space-x-2 px-6 py-3 bg-zinc-100 text-zinc-400 rounded-2xl text-[10px] font-black uppercase tracking-widest cursor-not-allowed border border-zinc-200"
-                          >
-                            Not Available
-                          </button>
-                        )}
-                      </td>
-                    </motion.tr>
-                  ))}
-                </AnimatePresence>
-              </tbody>
-            </table>
+                        </td>
+                        <td className="px-6 py-8">
+                          <div className="space-y-1">
+                            <h3 className="text-lg font-bold text-zinc-900 group-hover:text-blue-600 transition-colors leading-tight">
+                              {paper.title}
+                            </h3>
+                            <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
+                              {paper.year !== '-' && <span className="flex items-center text-zinc-400"><Calendar size={12} className="mr-1" /> {paper.year}</span>}
+                              {paper.q !== '-' && (
+                                <span className={`flex items-center px-2 py-1 rounded border shadow-sm ${paper.q.includes('Q1') ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                                  paper.q.includes('Q2') ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                                    'bg-indigo-50 text-indigo-600 border-indigo-100'
+                                  } italic`}>
+                                  <Award size={10} className="mr-1" /> {paper.q}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-8 bg-zinc-50/30">
+                          <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg border ${paper.type === 'Journal' ? 'border-purple-200 text-purple-600 bg-purple-50' :
+                            paper.type === 'Conference' ? 'border-sky-200 text-sky-600 bg-sky-50' :
+                              'border-zinc-200 text-zinc-600 bg-zinc-50'
+                            }`}>
+                            {paper.type}
+                          </span>
+                        </td>
+                        <td className="px-6 py-8">
+                          <div className="flex flex-wrap gap-2 max-w-[400px]">
+                            {paper.authors.split(',').map((author, i) => {
+                              const name = author.trim();
+                              const isMe = name.toLowerCase() === "obaidul haque";
+                              return (
+                                <span
+                                  key={i}
+                                  className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMe
+                                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-400 shadow-sm shadow-blue-100 ring-2 ring-blue-50"
+                                    : "bg-white text-zinc-500 border-zinc-100 hover:bg-zinc-50"
+                                    }`}
+                                >
+                                  {name}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </td>
+                        <td className="px-6 py-8 bg-zinc-50/30">
+                          <div className="flex items-center space-x-2 text-zinc-700 font-bold text-sm">
+                            <Building size={16} className="text-zinc-400" />
+                            <span>{paper.publisher !== '-' ? paper.publisher : 'N/A'}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-8 text-center">
+                          {paper.link ? (
+                            <a
+                              href={paper.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 active:scale-95 group/btn"
+                            >
+                              <span>Online</span>
+                              <ExternalLink size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                            </a>
+                          ) : (
+                            <button
+                              disabled
+                              className="inline-flex items-center space-x-2 px-6 py-3 bg-zinc-100 text-zinc-400 rounded-2xl text-[10px] font-black uppercase tracking-widest cursor-not-allowed border border-zinc-200"
+                            >
+                              Not Available
+                            </button>
+                          )}
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </AnimatePresence>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 

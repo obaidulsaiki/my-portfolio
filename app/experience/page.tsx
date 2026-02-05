@@ -110,16 +110,16 @@ export default function ExperiencePage() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-6 text-center mb-24"
+          className="space-y-6 text-center mb-12 md:mb-24 px-4"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full border border-blue-100 mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full border border-blue-100 mb-2">
             <div className="w-2 h-2 bg-blue-600 rounded-full animate-ping" />
             <span className="text-blue-600 font-black uppercase tracking-[0.2em] text-[10px]">Professional Path</span>
           </div>
-          <h1 className="text-6xl md:text-9xl font-black text-zinc-900 tracking-tighter leading-none">
+          <h1 className="text-4xl sm:text-7xl md:text-9xl font-black text-zinc-900 tracking-tighter leading-none">
             Work <span className="text-blue-600 italic">Experience</span>
           </h1>
-          <p className="text-zinc-500 max-w-2xl mx-auto text-xl font-medium italic">
+          <p className="text-zinc-500 max-w-2xl mx-auto text-base md:text-xl font-medium italic">
             A chronicle of my professional growth, technical contributions, and the problems I've solved.
           </p>
         </motion.div>
@@ -153,21 +153,21 @@ export default function ExperiencePage() {
                 </div>
 
                 {/* CONTENT CARD */}
-                <div className="w-full md:w-1/2 pl-12 md:pl-0">
-                  <div className="glass-card rounded-[3rem] p-8 md:p-10 border border-zinc-100 shadow-xl group-hover:shadow-2xl group-hover:shadow-blue-500/5 group-hover:-translate-y-2 transition-all duration-500 relative bg-white/80 backdrop-blur-xl">
+                <div className="w-full md:w-1/2 pl-10 md:pl-0">
+                  <div className="glass-card rounded-[2rem] md:rounded-[3rem] p-6 sm:p-8 md:p-10 border border-zinc-100 shadow-xl group-hover:shadow-2xl group-hover:shadow-blue-500/5 group-hover:-translate-y-2 transition-all duration-500 relative bg-white/80 backdrop-blur-xl">
 
                     {/* CARD HEADER */}
-                    <div className="flex items-start justify-between mb-8 border-b border-zinc-100 pb-8">
+                    <div className="flex flex-col sm:flex-row items-start justify-between mb-8 border-b border-zinc-100 pb-8 gap-6">
                       <div className="space-y-4">
                         <div className="flex items-center gap-4">
-                          <div className="w-14 h-14 bg-zinc-950 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:bg-blue-600 transition-colors duration-500">
-                            <Briefcase size={24} />
+                          <div className="w-12 h-12 md:w-14 md:h-14 bg-zinc-950 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:bg-blue-600 transition-colors duration-500 shrink-0">
+                            <Briefcase size={20} className="md:w-6 md:h-6" />
                           </div>
                           <div>
-                            <h3 className="text-2xl md:text-3xl font-black text-zinc-900 leading-tight tracking-tight">{exp.role}</h3>
-                            <div className="flex items-center gap-2 mt-1">
+                            <h3 className="text-xl md:text-3xl font-black text-zinc-900 leading-tight tracking-tight">{exp.role}</h3>
+                            <div className="flex flex-wrap items-center gap-2 mt-1">
                               <span className="text-blue-600 font-black text-sm italic">@{exp.company}</span>
-                              <span className="w-1.5 h-1.5 bg-zinc-200 rounded-full" />
+                              <span className="hidden sm:block w-1.5 h-1.5 bg-zinc-200 rounded-full" />
                               <span className="text-zinc-400 font-bold text-[10px] uppercase tracking-wider">{exp.type}</span>
                             </div>
                           </div>
@@ -180,12 +180,8 @@ export default function ExperiencePage() {
                         </div>
                       </div>
 
-                      <div className="flex flex-col items-end gap-3 shrink-0">
-                        {/* Mobile-only date view */}
-                        <div className="md:hidden bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-[10px] font-black border border-blue-100 flex items-center shadow-sm">
-                          {exp.duration}
-                        </div>
-                        <div className="hidden md:flex bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-[10px] font-black border border-blue-100 items-center shadow-sm">
+                      <div className="flex flex-row sm:flex-col items-center sm:items-end gap-3 shrink-0 w-full sm:w-auto">
+                        <div className="bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-[10px] font-black border border-blue-100 flex items-center shadow-sm">
                           {exp.duration}
                         </div>
 
@@ -206,8 +202,8 @@ export default function ExperiencePage() {
                     <div className="space-y-6">
                       <div className="space-y-4">
                         {exp.description.map((item, i) => (
-                          <div key={i} className="flex items-start gap-4 text-zinc-600 text-base md:text-lg leading-relaxed font-medium">
-                            <div className="mt-2.5 w-1.5 h-1.5 bg-blue-600 rounded-full shrink-0 group-hover:scale-150 transition-transform" />
+                          <div key={i} className="flex items-start gap-3 sm:gap-4 text-sm sm:text-base md:text-lg leading-relaxed font-medium text-zinc-600">
+                            <div className="mt-2 w-1.5 h-1.5 bg-blue-600 rounded-full shrink-0 group-hover:scale-150 transition-transform" />
                             {item}
                           </div>
                         ))}
@@ -222,7 +218,7 @@ export default function ExperiencePage() {
                           {exp.technologies.map((tech, i) => (
                             <span
                               key={i}
-                              className="bg-zinc-50 text-zinc-700 px-4 py-1.5 rounded-xl text-[10px] font-black border border-zinc-100 group-hover:border-blue-100 group-hover:bg-white hover:text-blue-600 hover:scale-105 transition-all cursor-default uppercase tracking-wider"
+                              className="bg-zinc-50 text-zinc-700 px-3 py-1.5 rounded-xl text-[9px] sm:text-[10px] font-black border border-zinc-100 group-hover:border-blue-100 group-hover:bg-white hover:text-blue-600 hover:scale-105 transition-all cursor-default uppercase tracking-wider"
                             >
                               {tech}
                             </span>

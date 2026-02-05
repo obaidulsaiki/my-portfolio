@@ -230,22 +230,22 @@ export default function ProjectsPage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="space-y-6 text-center mb-20"
+                    className="space-y-6 text-center mb-16 md:mb-20"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full border border-blue-100 mb-4">
                         <div className="w-2 h-2 bg-blue-600 rounded-full animate-ping" />
                         <span className="text-blue-600 font-black uppercase tracking-[0.2em] text-[10px]">Development Portfolio</span>
                     </div>
-                    <h1 className="text-6xl md:text-9xl font-black text-zinc-900 tracking-tighter leading-none">
+                    <h1 className="text-4xl sm:text-6xl md:text-9xl font-black text-zinc-900 tracking-tighter leading-none px-4">
                         Featured <span className="text-blue-600 italic">Work</span>
                     </h1>
-                    <p className="text-zinc-500 max-w-2xl mx-auto text-xl font-medium italic">
+                    <p className="text-zinc-500 max-w-2xl mx-auto text-lg md:text-xl font-medium italic px-6">
                         A showcase of my engineering journey, from early experiments to high-scale enterprise applications.
                     </p>
                 </motion.div>
 
                 {/* PROJECTS GRID */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
                     {projectsData.map((project, index) => (
                         <motion.div
                             key={project.id}
@@ -253,54 +253,54 @@ export default function ProjectsPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative glass-card rounded-[3rem] border border-zinc-100 shadow-xl overflow-hidden transition-all duration-500 bg-white/80 backdrop-blur-xl hover:shadow-2xl hover:shadow-blue-500/5"
+                            className="group relative glass-card rounded-[2.5rem] md:rounded-[3rem] border border-zinc-100 shadow-xl overflow-hidden transition-all duration-500 bg-white/80 backdrop-blur-xl hover:shadow-2xl hover:shadow-blue-500/5"
                         >
                             <div className={`absolute top-0 right-0 w-2 h-full bg-gradient-to-b ${project.color}`} />
 
-                            <div className="p-8 md:p-10">
-                                <div className="flex flex-col md:flex-row gap-8 items-start">
+                            <div className="p-6 sm:p-8 md:p-10">
+                                <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
                                     {/* ICON & MAIN INFO */}
                                     <div className="flex-1 space-y-6">
                                         <div className="flex items-center gap-4">
-                                            <div className={`w-16 h-16 bg-gradient-to-br ${project.color} rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500`}>
-                                                <project.icon size={32} />
+                                            <div className={`w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br ${project.color} rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500 shrink-0`}>
+                                                <project.icon size={24} className="md:w-8 md:h-8" />
                                             </div>
                                             <div className="flex-1">
-                                                <div className="flex flex-wrap items-center gap-3">
-                                                    <h3 className="text-3xl font-black text-zinc-900 tracking-tight">{project.title}</h3>
-                                                    <span className="px-3 py-1 bg-zinc-100 rounded-full text-[10px] font-black text-zinc-400 border border-zinc-200 uppercase tracking-widest">{project.year}</span>
+                                                <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                                                    <h3 className="text-xl md:text-3xl font-black text-zinc-900 tracking-tight">{project.title}</h3>
+                                                    <span className="px-2 py-0.5 md:px-3 md:py-1 bg-zinc-100 rounded-full text-[9px] md:text-[10px] font-black text-zinc-400 border border-zinc-200 uppercase tracking-widest">{project.year}</span>
                                                 </div>
-                                                <p className="text-zinc-500 font-bold text-sm mt-1">{project.shortDesc}</p>
+                                                <p className="text-zinc-500 font-bold text-xs md:text-sm mt-1">{project.shortDesc}</p>
                                             </div>
                                         </div>
 
                                         <div className="flex flex-wrap gap-2">
                                             {project.tags.map((tag, i) => (
-                                                <span key={i} className="px-4 py-1.5 bg-zinc-50 text-zinc-600 border border-zinc-100 rounded-xl text-[10px] font-black uppercase tracking-wider group-hover:bg-white group-hover:border-blue-100 transition-all">
+                                                <span key={i} className="px-3 py-1 md:px-4 md:py-1.5 bg-zinc-50 text-zinc-600 border border-zinc-100 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-wider group-hover:bg-white group-hover:border-blue-100 transition-all">
                                                     {tag}
                                                 </span>
                                             ))}
                                             {(project as any).collaborators && (project as any).collaborators.map((person: string, i: number) => (
-                                                <span key={i} className="px-4 py-1.5 bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl text-[10px] font-black uppercase tracking-wider flex items-center gap-2">
-                                                    <Users size={12} /> Collaboration: {person}
+                                                <span key={i} className="px-3 py-1 md:px-4 md:py-1.5 bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-wider flex items-center gap-2">
+                                                    <Users size={12} /> {person}
                                                 </span>
                                             ))}
                                         </div>
 
-                                        <div className="flex flex-wrap gap-4 pt-4">
+                                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
                                             <a
                                                 href={project.repo}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center gap-2 px-8 py-3.5 bg-zinc-950 text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] shadow-lg hover:shadow-blue-200 transition-all hover:bg-blue-600 active:scale-95"
+                                                className="flex items-center justify-center gap-2 px-6 py-3.5 bg-zinc-950 text-white rounded-2xl text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-lg hover:shadow-blue-200 transition-all hover:bg-blue-600 active:scale-95"
                                             >
-                                                View Repository <Github size={14} />
+                                                Repository <Github size={14} />
                                             </a>
                                             <button
                                                 onClick={() => setSelectedProject(project)}
-                                                className="flex items-center gap-2 px-8 py-3.5 bg-white text-zinc-900 border border-zinc-200 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] shadow-sm hover:bg-zinc-50 transition-all active:scale-95"
+                                                className="flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-zinc-900 border border-zinc-200 rounded-2xl text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-sm hover:bg-zinc-50 transition-all active:scale-95"
                                             >
-                                                Detailed Discussion <ChevronDown size={16} />
+                                                Discussion <ChevronDown size={16} />
                                             </button>
                                         </div>
                                     </div>
@@ -336,53 +336,53 @@ export default function ProjectsPage() {
                                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                                className="fixed inset-4 md:inset-6 lg:inset-x-8 lg:inset-y-6 bg-white z-[101] rounded-[3rem] shadow-2xl overflow-hidden border border-zinc-100 flex flex-col"
+                                className="fixed inset-4 md:inset-6 lg:inset-x-8 lg:inset-y-6 bg-white z-[101] rounded-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-hidden border border-zinc-100 flex flex-col"
                             >
                                 <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${selectedProject.color}`} />
 
                                 {/* MODAL HEADER */}
-                                <div className="p-8 md:p-12 border-b border-zinc-100 flex items-center justify-between bg-white sticky top-0 z-10">
-                                    <div className="flex items-center gap-6">
-                                        <div className={`w-16 h-16 bg-gradient-to-br ${selectedProject.color} rounded-2xl flex items-center justify-center text-white shadow-lg`}>
-                                            <selectedProject.icon size={32} />
+                                <div className="p-6 sm:p-8 md:p-12 border-b border-zinc-100 flex items-center justify-between bg-white sticky top-0 z-10">
+                                    <div className="flex items-center gap-4 md:gap-6">
+                                        <div className={`w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br ${selectedProject.color} rounded-2xl flex items-center justify-center text-white shadow-lg shrink-0`}>
+                                            <selectedProject.icon size={24} className="md:w-8 md:h-8" />
                                         </div>
                                         <div>
-                                            <div className="flex items-center gap-3">
-                                                <h3 className="text-4xl font-black text-zinc-900 tracking-tight">{selectedProject.title}</h3>
-                                                <span className="px-4 py-1.5 bg-zinc-100 rounded-full text-[11px] font-black text-zinc-400 border border-zinc-200 uppercase tracking-widest">{selectedProject.year}</span>
+                                            <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                                                <h3 className="text-xl md:text-4xl font-black text-zinc-900 tracking-tight">{selectedProject.title}</h3>
+                                                <span className="px-2 py-0.5 md:px-4 md:py-1.5 bg-zinc-100 rounded-full text-[9px] md:text-[11px] font-black text-zinc-400 border border-zinc-200 uppercase tracking-widest">{selectedProject.year}</span>
                                             </div>
-                                            <p className="text-zinc-500 font-bold italic">{selectedProject.shortDesc}</p>
+                                            <p className="text-xs md:text-lg text-zinc-500 font-bold italic truncate max-w-[200px] sm:max-w-none">{selectedProject.shortDesc}</p>
                                         </div>
                                     </div>
                                     <button
                                         onClick={() => setSelectedProject(null)}
-                                        className="w-12 h-12 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-500 hover:bg-zinc-200 hover:text-zinc-900 transition-all active:scale-95"
+                                        className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-500 hover:bg-zinc-200 hover:text-zinc-900 transition-all active:scale-95 shrink-0"
                                     >
-                                        <ChevronDown className="rotate-180" size={24} />
+                                        <ChevronDown className="rotate-180" size={20} />
                                     </button>
                                 </div>
 
                                 {/* MODAL BODY */}
-                                <div className="flex-1 overflow-y-auto p-8 md:p-12 space-y-16 scrollbar-hide">
+                                <div className="flex-1 overflow-y-auto p-6 sm:p-8 md:p-12 space-y-12 md:space-y-16 scrollbar-hide">
                                     {/* ROLES SECTION */}
                                     {(selectedProject as any).roles && (
-                                        <div className="space-y-8">
-                                            <h4 className="text-[12px] font-black text-zinc-900 uppercase tracking-[0.3em] flex items-center gap-3">
-                                                <Users size={18} className="text-blue-600" /> User Roles & Experience
+                                        <div className="space-y-6 md:space-y-8">
+                                            <h4 className="text-[10px] md:text-[12px] font-black text-zinc-900 uppercase tracking-[0.3em] flex items-center gap-3">
+                                                <Users size={16} className="text-blue-600" /> User Roles
                                             </h4>
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                                                 {Object.entries((selectedProject as any).roles).map(([role, features]: [string, any], i) => (
-                                                    <div key={i} className="p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 space-y-6 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-500 group">
-                                                        <div className="flex items-center gap-4">
-                                                            <div className="w-10 h-10 rounded-2xl bg-white border border-zinc-200 flex items-center justify-center text-[12px] font-black text-blue-600 uppercase shadow-sm group-hover:scale-110 transition-transform">
+                                                    <div key={i} className="p-6 md:p-8 bg-zinc-50 rounded-[2rem] md:rounded-[2.5rem] border border-zinc-100 space-y-4 md:space-y-6 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-500 group">
+                                                        <div className="flex items-center gap-3 md:gap-4">
+                                                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-[10px] md:text-[12px] font-black text-blue-600 uppercase shadow-sm group-hover:scale-110 transition-transform">
                                                                 {role[0]}
                                                             </div>
-                                                            <h5 className="text-base font-black text-zinc-900 uppercase tracking-widest">{role}</h5>
+                                                            <h5 className="text-sm md:text-base font-black text-zinc-900 uppercase tracking-widest">{role}</h5>
                                                         </div>
-                                                        <ul className="space-y-3">
+                                                        <ul className="space-y-2 md:space-y-3">
                                                             {features.map((f: string, idx: number) => (
-                                                                <li key={idx} className="flex items-center gap-3 text-sm text-zinc-500 font-bold">
-                                                                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" /> {f}
+                                                                <li key={idx} className="flex items-center gap-2 md:gap-3 text-xs md:text-sm text-zinc-500 font-bold">
+                                                                    <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-blue-400 rounded-full shrink-0" /> {f}
                                                                 </li>
                                                             ))}
                                                         </ul>
@@ -392,19 +392,19 @@ export default function ProjectsPage() {
                                         </div>
                                     )}
 
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
                                         {/* FEATURES SECTION */}
-                                        <div className="space-y-8">
-                                            <h4 className="text-[12px] font-black text-blue-600 uppercase tracking-[0.3em] flex items-center gap-3">
-                                                <Settings size={18} /> Premium Features & UI
+                                        <div className="space-y-6 md:space-y-8">
+                                            <h4 className="text-[10px] md:text-[12px] font-black text-blue-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                                                <Settings size={16} /> Premium Features
                                             </h4>
-                                            <div className="space-y-4">
+                                            <div className="space-y-3 md:space-y-4">
                                                 {selectedProject.features.map((feature, i) => (
-                                                    <div key={i} className="flex items-start gap-5 p-6 bg-blue-50/50 rounded-3xl border border-blue-100/50 hover:bg-white hover:shadow-xl transition-all duration-500 group">
-                                                        <div className="mt-1 w-8 h-8 bg-white rounded-2xl flex items-center justify-center shadow-md border border-blue-100 group-hover:rotate-12 transition-transform">
-                                                            <CheckCircle2 size={18} className="text-blue-600" />
+                                                    <div key={i} className="flex items-start gap-4 md:gap-5 p-4 md:p-6 bg-blue-50/50 rounded-2xl md:rounded-3xl border border-blue-100/50 hover:bg-white hover:shadow-xl transition-all duration-500 group">
+                                                        <div className="mt-1 w-6 h-6 md:w-8 md:h-8 bg-white rounded-lg md:rounded-2xl flex items-center justify-center shadow-md border border-blue-100 group-hover:rotate-12 transition-transform shrink-0">
+                                                            <CheckCircle2 size={14} className="text-blue-600 md:w-[18px] md:h-[18px]" />
                                                         </div>
-                                                        <p className="text-zinc-600 font-bold leading-relaxed">{feature}</p>
+                                                        <p className="text-xs md:text-base text-zinc-600 font-bold leading-relaxed">{feature}</p>
                                                     </div>
                                                 ))}
                                             </div>
@@ -412,42 +412,42 @@ export default function ProjectsPage() {
 
                                         {/* FUNCTIONALITY / TECH SECTION */}
                                         <div className="space-y-8">
-                                            <h4 className="text-[12px] font-black text-indigo-600 uppercase tracking-[0.3em] flex items-center gap-3">
-                                                <Cpu size={18} /> Functional Excellence
+                                            <h4 className="text-[10px] md:text-[12px] font-black text-indigo-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                                                <Cpu size={16} className="md:w-[18px] md:h-[18px]" /> Functional Excellence
                                             </h4>
-                                            <div className="space-y-8">
-                                                <div className="grid grid-cols-1 gap-4">
+                                            <div className="space-y-6 md:space-y-8">
+                                                <div className="grid grid-cols-1 gap-3 md:gap-4">
                                                     {selectedProject.functionality.map((func, i) => (
-                                                        <div key={i} className="flex items-start gap-5 p-6 bg-indigo-50/50 rounded-3xl border border-indigo-100/50 hover:bg-white hover:shadow-xl transition-all duration-500 group/func">
-                                                            <div className="mt-2 w-2 h-2 bg-indigo-600 rounded-full group-hover/func:scale-150 transition-transform" />
-                                                            <p className="text-zinc-600 font-bold leading-relaxed italic">"{func}"</p>
+                                                        <div key={i} className="flex items-start gap-4 md:gap-5 p-4 md:p-6 bg-indigo-50/50 rounded-2xl md:rounded-3xl border border-indigo-100/50 hover:bg-white hover:shadow-xl transition-all duration-500 group/func">
+                                                            <div className="mt-2 w-1.5 h-1.5 md:w-2 md:h-2 bg-indigo-600 rounded-full group-hover/func:scale-150 transition-transform shrink-0" />
+                                                            <p className="text-xs md:text-base text-zinc-600 font-bold leading-relaxed italic">"{func}"</p>
                                                         </div>
                                                     ))}
                                                 </div>
 
                                                 {/* DEEP DIVE CALLOUT */}
-                                                <div className="p-10 bg-zinc-950 rounded-[3rem] text-white space-y-6 shadow-2xl border border-white/10 relative overflow-hidden group">
-                                                    <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700">
+                                                <div className="p-6 md:p-10 bg-zinc-950 rounded-[2rem] md:rounded-[3rem] text-white space-y-4 md:space-y-6 shadow-2xl border border-white/10 relative overflow-hidden group">
+                                                    <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700 hidden md:block">
                                                         <Cpu size={120} />
                                                     </div>
-                                                    <h5 className="text-2xl font-black tracking-tight">Technical Deep Dive</h5>
-                                                    <p className="text-zinc-400 text-base font-medium leading-relaxed max-w-lg">
+                                                    <h5 className="text-xl md:text-2xl font-black tracking-tight">Technical Deep Dive</h5>
+                                                    <p className="text-zinc-400 text-xs md:text-base font-medium leading-relaxed max-w-lg">
                                                         The development phase for {selectedProject.title} focused on modularity, high performance, and ensuring a seamless end-to-end user experience.
                                                     </p>
-                                                    <div className="flex gap-8 pt-6">
-                                                        <div className="flex flex-col items-center gap-2">
-                                                            <Database size={24} className="text-blue-400" />
-                                                            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500">Scale</span>
+                                                    <div className="flex gap-4 md:gap-8 pt-4 md:pt-6">
+                                                        <div className="flex flex-col items-center gap-1 md:gap-2">
+                                                            <Database size={18} className="text-blue-400 md:w-6 md:h-6" />
+                                                            <span className="text-[8px] md:text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500">Scale</span>
                                                         </div>
-                                                        <div className="w-[1px] h-10 bg-white/10" />
-                                                        <div className="flex flex-col items-center gap-2">
-                                                            <ShieldCheck size={24} className="text-green-400" />
-                                                            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500">Secure</span>
+                                                        <div className="w-[1px] h-8 md:h-10 bg-white/10" />
+                                                        <div className="flex flex-col items-center gap-1 md:gap-2">
+                                                            <ShieldCheck size={18} className="text-green-400 md:w-6 md:h-6" />
+                                                            <span className="text-[8px] md:text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500">Secure</span>
                                                         </div>
-                                                        <div className="w-[1px] h-10 bg-white/10" />
-                                                        <div className="flex flex-col items-center gap-2">
-                                                            <Globe size={24} className="text-purple-400" />
-                                                            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500">Edge</span>
+                                                        <div className="w-[1px] h-8 md:h-10 bg-white/10" />
+                                                        <div className="flex flex-col items-center gap-1 md:gap-2">
+                                                            <Globe size={18} className="text-purple-400 md:w-6 md:h-6" />
+                                                            <span className="text-[8px] md:text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500">Edge</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,10 +457,10 @@ export default function ProjectsPage() {
                                 </div>
 
                                 {/* MODAL FOOTER */}
-                                <div className="p-8 border-t border-zinc-100 bg-zinc-50/50 flex justify-center">
+                                <div className="p-6 sm:p-8 border-t border-zinc-100 bg-zinc-50/50 flex justify-center">
                                     <button
                                         onClick={() => setSelectedProject(null)}
-                                        className="px-12 py-4 bg-zinc-900 text-white rounded-2xl text-[12px] font-black uppercase tracking-[0.3em] shadow-xl hover:bg-blue-600 transition-all active:scale-95"
+                                        className="px-8 md:px-12 py-3 md:py-4 bg-zinc-900 text-white rounded-xl md:rounded-2xl text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] shadow-xl hover:bg-blue-600 transition-all active:scale-95"
                                     >
                                         Close Discussion
                                     </button>
@@ -474,12 +474,13 @@ export default function ProjectsPage() {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    className="text-center mt-32 space-y-8"
+                    viewport={{ once: true }}
+                    className="text-center mt-20 md:mt-32 space-y-8"
                 >
                     <div className="w-24 h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent mx-auto opacity-20" />
-                    <p className="text-zinc-400 font-black uppercase tracking-[0.4em] text-xs underline underline-offset-8 decoration-blue-600/30">End of Portfolio Volume 1.0</p>
+                    <p className="text-zinc-400 font-black uppercase tracking-[0.4em] text-[10px] md:text-xs underline underline-offset-8 decoration-blue-600/30 px-4">End of Portfolio Volume 1.0</p>
                     <div className="flex justify-center gap-6">
-                        <a href="https://github.com/obaidulsaiki" target="_blank" className="p-4 bg-white rounded-2xl border border-zinc-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all group">
+                        <a href="https://github.com/obaidulsaiki" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-2xl border border-zinc-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all group">
                             <Github size={24} className="text-zinc-900 group-hover:text-blue-600 transition-colors" />
                         </a>
                         <a href="/contact" className="p-4 bg-white rounded-2xl border border-zinc-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all group">

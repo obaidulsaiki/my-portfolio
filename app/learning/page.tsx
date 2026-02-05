@@ -628,27 +628,27 @@ export default function LearningPage() {
     const SkillCard = ({ skill }: { skill: any }) => (
         <motion.div
             layout
-            className={`w-full glass-card rounded-[2rem] border shadow-lg transition-all duration-300 backdrop-blur-xl overflow-hidden ${skill.name === "Next.js"
+            className={`w-full glass-card rounded-[2rem] md:rounded-[2.5rem] border shadow-lg transition-all duration-300 backdrop-blur-xl overflow-hidden ${skill.name === "Next.js"
                 ? "border-blue-200 shadow-blue-100/50 bg-gradient-to-br from-white/90 to-blue-50/40"
-                : "border-white/50 shadow-lg bg-white/70"
+                : "border-zinc-100 shadow-lg bg-white/70"
                 }`}
         >
-            <div className="p-6 md:p-8">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="p-5 sm:p-6 md:p-8">
+                <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6">
                     {/* LEFT: INFO */}
                     <div className="flex-1 space-y-4">
                         <div className="flex items-center gap-4">
-                            <div className={`p-3 rounded-xl ${skill.name === "Next.js" ? "bg-blue-600 text-white" : "bg-zinc-900 text-white"}`}>
+                            <div className={`shrink-0 p-3 rounded-xl ${skill.name === "Next.js" ? "bg-blue-600 text-white" : "bg-zinc-900 text-white"}`}>
                                 {skill.name === "Next.js" ? <Layout size={20} /> : <Code size={20} />}
                             </div>
-                            <div>
-                                <h3 className="text-xl font-black text-zinc-900 tracking-tight flex items-center gap-2">
-                                    {skill.name}
-                                    {skill.name === "Next.js" && <span className="text-[10px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded-md font-black uppercase">Core Skill</span>}
+                            <div className="min-w-0">
+                                <h3 className="text-lg md:text-xl font-black text-zinc-900 tracking-tight flex items-center gap-2">
+                                    <span className="truncate">{skill.name}</span>
+                                    {skill.name === "Next.js" && <span className="shrink-0 text-[8px] md:text-[10px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded-md font-black uppercase">Core</span>}
                                 </h3>
-                                <div className="flex items-center gap-3 text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">
+                                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] md:text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">
                                     <span className="flex items-center gap-1"><Library size={12} className="text-blue-500" /> {skill.source}</span>
-                                    <span>•</span>
+                                    <span className="hidden sm:inline">•</span>
                                     <span className="flex items-center gap-1"><Calendar size={12} className="text-blue-500" /> {skill.start} - {skill.end}</span>
                                 </div>
                             </div>
@@ -656,7 +656,7 @@ export default function LearningPage() {
 
                         {/* PROGRESS BAR */}
                         <div className="space-y-2">
-                            <div className="flex justify-between text-[10px] font-black uppercase tracking-tighter text-zinc-500">
+                            <div className="flex justify-between text-[9px] md:text-[10px] font-black uppercase tracking-tighter text-zinc-500">
                                 <span>Curriculum Progress</span>
                                 <span className="text-blue-600 font-black">{skill.progress}%</span>
                             </div>
@@ -671,28 +671,28 @@ export default function LearningPage() {
                     </div>
 
                     {/* RIGHT: ACTIONS */}
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <button
                             disabled={skill.cert === "NOT YET" || skill.cert === "No Certificate"}
-                            className="flex items-center gap-2 px-5 py-2.5 bg-zinc-900 text-white rounded-xl text-[11px] font-black hover:bg-blue-600 transition-all shadow-md disabled:opacity-30 disabled:hover:bg-zinc-900 whitespace-nowrap"
+                            className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-zinc-900 text-white rounded-xl text-[10px] md:text-[11px] font-black hover:bg-blue-600 transition-all shadow-md disabled:opacity-30 disabled:hover:bg-zinc-900 whitespace-nowrap"
                         >
-                            <Award size={14} /> Certificate
+                            <Award size={14} /> <span className="hidden sm:inline">Certificate</span><span className="sm:hidden">Cert</span>
                         </button>
                         {skill.note ? (
                             <a
                                 href={skill.note}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-5 py-2.5 bg-white text-zinc-900 border border-zinc-200 rounded-xl text-[11px] font-black hover:bg-zinc-50 transition-all whitespace-nowrap"
+                                className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-white text-zinc-900 border border-zinc-200 rounded-xl text-[10px] md:text-[11px] font-black hover:bg-zinc-50 transition-all whitespace-nowrap"
                             >
                                 <FileText size={14} className="text-blue-600" /> Note
                             </a>
                         ) : (
-                            <button className="flex items-center gap-2 px-5 py-2.5 bg-white text-zinc-900 border border-zinc-200 rounded-xl text-[11px] font-black hover:bg-zinc-50 transition-all whitespace-nowrap opacity-30 cursor-not-allowed">
+                            <button className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-white text-zinc-900 border border-zinc-200 rounded-xl text-[10px] md:text-[11px] font-black hover:bg-zinc-50 transition-all whitespace-nowrap opacity-30 cursor-not-allowed">
                                 <FileText size={14} className="text-blue-600" /> Note
                             </button>
                         )}
-                        <button className="flex items-center gap-2 px-5 py-2.5 bg-white text-zinc-900 border border-zinc-200 rounded-xl text-[11px] font-black hover:bg-zinc-50 transition-all whitespace-nowrap">
+                        <button className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-white text-zinc-900 border border-zinc-200 rounded-xl text-[11px] font-black hover:bg-zinc-50 transition-all whitespace-nowrap">
                             <Layers size={14} className="text-indigo-600" /> Materials
                         </button>
                         <button
@@ -711,24 +711,24 @@ export default function LearningPage() {
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            className="mt-8 pt-8 border-t border-zinc-100"
+                            className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-zinc-100"
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10">
                                 {/* TOPICS COLUMN */}
-                                <div className="space-y-5 lg:col-span-2">
-                                    <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2 mb-4">
+                                <div className="space-y-5 lg:col-span-8">
+                                    <h4 className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2 mb-4">
                                         <CheckCircle2 size={16} className="text-blue-500" /> Mastering Curriculum
                                     </h4>
-                                    <div className="grid grid-cols-1 gap-y-3">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-3">
                                         {(skill.topics || [
                                             "Advanced Architecture Patterns", "Performance Optimization", "Security Implementations"
                                         ]).map((topic: string, i: number) => (
-                                            <div key={i} className="flex items-start gap-4 text-sm font-bold text-zinc-600 group/topic">
-                                                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-100 flex items-center justify-center text-[10px] font-black text-zinc-400 group-hover/topic:bg-blue-600 group-hover/topic:text-white transition-all">
+                                            <div key={i} className="flex items-start gap-4 text-xs md:text-sm font-bold text-zinc-600 group/topic max-w-full">
+                                                <div className="shrink-0 w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-100 flex items-center justify-center text-[10px] font-black text-zinc-400 group-hover/topic:bg-blue-600 group-hover/topic:text-white transition-all">
                                                     {(i + 1).toString().padStart(2, '0')}
                                                 </div>
-                                                <div className="flex-1 py-1 px-2 rounded-lg group-hover/topic:bg-blue-50/50 transition-all flex items-center justify-between">
-                                                    <span className="leading-relaxed">{topic}</span>
+                                                <div className="flex-1 min-w-0 py-1 px-2 rounded-lg group-hover/topic:bg-blue-50/50 transition-all flex items-center justify-between gap-2 overflow-hidden">
+                                                    <span className="leading-relaxed truncate sm:overflow-visible sm:whitespace-normal">{topic}</span>
                                                     {((skill.name === "Next.js" && i < 5) ||
                                                         (skill.name === "Angular" && i < 3) ||
                                                         (skill.name === "React JS" && i < 33) ||
@@ -750,9 +750,9 @@ export default function LearningPage() {
                                                         (skill.name === "C" && i < 28) ||
                                                         (skill.name === "C++" && i < 45) ||
                                                         (skill.name === "Docker" && i < 7)) && (
-                                                            <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 rounded-md border border-green-100">
+                                                            <div className="shrink-0 flex items-center gap-1.5 px-2 py-1 bg-green-50 rounded-md border border-green-100">
                                                                 <CheckCircle2 size={12} className="text-green-600" />
-                                                                <span className="text-[9px] font-black text-green-700 uppercase">Mastered</span>
+                                                                <span className="hidden sm:inline text-[9px] font-black text-green-700 uppercase">Mastered</span>
                                                             </div>
                                                         )}
                                                 </div>
@@ -762,9 +762,9 @@ export default function LearningPage() {
                                 </div>
 
                                 {/* PROJECTS & TOOLS COLUMN */}
-                                <div className="space-y-10">
+                                <div className="space-y-10 lg:col-span-4">
                                     <div className="space-y-5">
-                                        <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
+                                        <h4 className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
                                             <Briefcase size={16} className="text-indigo-500" /> Projects Portfolio
                                         </h4>
                                         <div className="space-y-3">
@@ -774,15 +774,15 @@ export default function LearningPage() {
                                                 const cleanLink = linkPart ? linkPart.replace(")", "") : null;
 
                                                 return (
-                                                    <div key={i} className="p-3 bg-zinc-50 rounded-xl border border-zinc-100 text-xs font-bold text-zinc-700 group/proj hover:bg-white hover:shadow-sm transition-all">
+                                                    <div key={i} className="p-3 bg-zinc-50 rounded-xl border border-zinc-100 text-[11px] md:text-xs font-bold text-zinc-700 group/proj hover:bg-white hover:shadow-sm transition-all overflow-hidden">
                                                         <div className="flex items-start justify-between gap-3">
-                                                            <span className="leading-relaxed">{name}</span>
+                                                            <span className="leading-relaxed break-words">{name}</span>
                                                             {cleanLink && (
                                                                 <a
                                                                     href={cleanLink}
                                                                     target="_blank"
                                                                     rel="noopener noreferrer"
-                                                                    className="p-1.5 bg-white rounded-lg border border-zinc-200 text-zinc-400 hover:text-blue-600 hover:border-blue-200 transition-all opacity-0 group-hover/proj:opacity-100"
+                                                                    className="shrink-0 p-1.5 bg-white rounded-lg border border-zinc-200 text-zinc-400 hover:text-blue-600 hover:border-blue-200 transition-all opacity-0 group-hover/proj:opacity-100"
                                                                 >
                                                                     <ExternalLink size={12} />
                                                                 </a>
@@ -795,12 +795,12 @@ export default function LearningPage() {
                                     </div>
 
                                     <div className="space-y-5">
-                                        <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
+                                        <h4 className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
                                             <Cpu size={16} className="text-cyan-500" /> Stack & Ecosystem
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {(skill.tools || ["Standard Ecosystem"]).map((tool: string, i: number) => (
-                                                <span key={i} className="px-3 py-1.5 bg-white rounded-lg border border-zinc-100 text-[10px] font-black text-zinc-600 shadow-sm">
+                                                <span key={i} className="px-3 py-1.5 bg-white rounded-lg border border-zinc-100 text-[9px] md:text-[10px] font-black text-zinc-600 shadow-sm">
                                                     {tool}
                                                 </span>
                                             ))}
@@ -817,29 +817,29 @@ export default function LearningPage() {
 
     return (
         <main className="min-h-screen pt-24 pb-32 hero-gradient overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-4 md:px-6">
 
                 {/* HEADER */}
-                <div className="text-center space-y-6 mb-16">
-                    <h1 className="text-5xl md:text-8xl font-black text-zinc-900 tracking-tighter leading-none">
+                <div className="text-center space-y-6 mb-12 md:mb-16 px-2">
+                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-zinc-900 tracking-tighter leading-none">
                         Continuous <span className="text-blue-600 italic">Learning</span>
                     </h1>
 
                     {/* CUSTOM TABS */}
-                    <div className="flex items-center justify-center p-1.5 bg-zinc-100/50 rounded-[2.5rem] w-fit mx-auto border border-zinc-200 backdrop-blur-sm">
+                    <div className="flex items-center justify-center p-1.5 bg-zinc-100/50 rounded-[2rem] sm:rounded-[2.5rem] w-full max-w-md mx-auto border border-zinc-200 backdrop-blur-sm">
                         <button
                             onClick={() => setActiveTab("skills")}
-                            className={`px-10 py-4 rounded-[2rem] text-xs font-black transition-all duration-300 ${activeTab === 'skills' ? 'bg-zinc-900 text-white shadow-xl scale-105' : 'text-zinc-500 hover:text-zinc-800'
+                            className={`flex-1 px-4 sm:px-10 py-3 sm:py-4 rounded-[1.5rem] sm:rounded-[2rem] text-[10px] sm:text-xs font-black transition-all duration-300 ${activeTab === 'skills' ? 'bg-zinc-900 text-white shadow-xl scale-[1.02] sm:scale-105' : 'text-zinc-500 hover:text-zinc-800'
                                 }`}
                         >
                             Skill Roadmap
                         </button>
                         <button
                             onClick={() => setActiveTab("academic")}
-                            className={`px-10 py-4 rounded-[2rem] text-xs font-black transition-all duration-300 ${activeTab === 'academic' ? 'bg-zinc-900 text-white shadow-xl scale-105' : 'text-zinc-500 hover:text-zinc-800'
+                            className={`flex-1 px-4 sm:px-10 py-3 sm:py-4 rounded-[1.5rem] sm:rounded-[2rem] text-[10px] sm:text-xs font-black transition-all duration-300 ${activeTab === 'academic' ? 'bg-zinc-900 text-white shadow-xl scale-[1.02] sm:scale-105' : 'text-zinc-500 hover:text-zinc-800'
                                 }`}
                         >
-                            Uni Notebook (IUBAT)
+                            Uni Notebook
                         </button>
                     </div>
                 </div>
@@ -851,15 +851,15 @@ export default function LearningPage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="space-y-20"
+                            className="space-y-12 md:space-y-20"
                         >
                             {/* CURRENTLY LEARNING SECTION */}
-                            <section className="space-y-8">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-200">
-                                        <Lightbulb className="text-white" size={24} />
+                            <section className="space-y-6 md:space-y-8">
+                                <div className="flex items-center gap-4 px-2">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg shadow-blue-200">
+                                        <Lightbulb className="text-white" size={20} />
                                     </div>
-                                    <h2 className="text-3xl font-black text-zinc-900 tracking-tight italic">Currently Learning</h2>
+                                    <h2 className="text-2xl md:text-3xl font-black text-zinc-900 tracking-tight italic">Currently Learning</h2>
                                 </div>
                                 <div className="space-y-4">
                                     {skillsData.filter(s => s.status === 0 || s.end === "Present").map(skill => (
@@ -869,12 +869,12 @@ export default function LearningPage() {
                             </section>
 
                             {/* LEARNT SECTION */}
-                            <section className="space-y-8">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center shadow-lg shadow-zinc-200">
-                                        <Trophy className="text-white" size={24} />
+                            <section className="space-y-6 md:space-y-8">
+                                <div className="flex items-center gap-4 px-2">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 bg-zinc-900 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg shadow-zinc-200">
+                                        <Trophy className="text-white" size={20} />
                                     </div>
-                                    <h2 className="text-3xl font-black text-zinc-900 tracking-tight italic">Learnt</h2>
+                                    <h2 className="text-2xl md:text-3xl font-black text-zinc-900 tracking-tight italic">Learnt</h2>
                                 </div>
                                 <div className="space-y-4">
                                     {skillsData.filter(s => s.status !== 0 && s.end !== "Present").map(skill => (
@@ -888,18 +888,16 @@ export default function LearningPage() {
                             key="academic"
                             initial={{ opacity: 0, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="space-y-10"
+                            className="space-y-10 px-2"
                         >
-                            {/* Academic Note Content remains consistent but with same premium wide styling */}
-                            <div className="text-center p-20 glass-card rounded-[3rem] border border-blue-100">
-                                <GraduationCap size={48} className="mx-auto text-blue-600 mb-6" />
-                                <h3 className="text-2xl font-black text-zinc-900">Academic Repository</h3>
-                                <p className="text-zinc-500 max-w-sm mx-auto mt-4 font-medium italic">Detailed IUBAT course notes, books, and outlines. This section is being synced with your university portal.</p>
+                            <div className="text-center p-10 md:p-20 glass-card rounded-[2.5rem] md:rounded-[3rem] border border-blue-100 bg-white/80">
+                                <GraduationCap size={40} className="md:size-12 mx-auto text-blue-600 mb-6" />
+                                <h3 className="text-xl md:text-2xl font-black text-zinc-900">Academic Repository</h3>
+                                <p className="text-zinc-500 max-w-sm mx-auto mt-4 text-sm md:text-base font-bold italic">Detailed IUBAT course notes, books, and outlines. This section is being synced with your university portal.</p>
                             </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
-
             </div>
         </main>
     );
